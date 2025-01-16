@@ -4,22 +4,21 @@
  * Project: https://github.com/oxalorg/sakura/
  */
 
-/* Body */
+*{box-sizing: border-box;
+}
 html {
-  scroll-padding-top: 100px;
-  font-size: 62.5%;
+  scroll-padding-top: 4rem;
   font-family: var(--font-family-base);
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  font-size: 1.8rem;
-  line-height: 1.618;
-  color: var(--color-text);
   background-color: var(--color-bg);
+  color: var(--color-text);
+  display: grid;
+  font-size: calc(1em + .5vw);
+  line-height: 1.618;
+  margin: 0;
+  min-height: 100vh;
 
   :root[data-theme="dark"] & {
     background-color: var(--color-bg-dark);
@@ -32,17 +31,17 @@ body {
 
   :root[data-theme="dark"] & {
     display:flex;
-    position:fixed;
     height:100%;
+    justify-content: center;
+    position:fixed;
     width:100%;
     z-index:-1;
-    justify-content: center;
 
     .wrapper-bg{
-      width:calc(var(--site-width) + 100px);
       background-color: var(--color-bg-wrapper-bg-dark);
-      border-right: 1px solid var(--color-bg-secondary-dark);
       border-left: 1px solid var(--color-bg-secondary-dark);
+      border-right: 1px solid var(--color-bg-secondary-dark);
+      width:calc(var(--site-width) + 100px);
     }
   }
 }
@@ -59,21 +58,20 @@ footer {
   margin-top: auto;
 }
 
-h1,
+:is(h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-  line-height: 1.1;
+h6) {
   font-family: var(--font-family-heading);
   font-weight: 800;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  margin-block: 3rem 1.5rem;
   overflow-wrap: break-word;
+  word-break: break-word;
   word-wrap: break-word;
   -ms-word-break: break-all;
-  word-break: break-word;
 
   &:focus, &:hover {
     .header-anchor {
@@ -112,8 +110,7 @@ h6 {
 }
 
 p {
-  margin-top: 0;
-  margin-bottom: 2.5rem;
+  margin-block: 0 2.5rem;
 }
 
 small,
@@ -132,28 +129,27 @@ hr {
 }
 
 a {
-  text-decoration: none;
   color: var(--color-secondary);
+  text-decoration: none;
 
   :root[data-theme="dark"] & {
     color: var(--color-link-dark);
   }
 
   &:hover {
-    color: var(--color-secondary);
     border-bottom: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
 
     :root[data-theme="dark"] & {
-      color: var(--color-link-dark);
       border-color: var(--color-link-dark);
+      color: var(--color-link-dark);
     }
   }
 }
 
 ul {
+  margin-block: 0 2.5rem;
   padding-left: 1.4em;
-  margin-top: 0;
-  margin-bottom: 2.5rem;
 }
 
 li {
@@ -161,23 +157,15 @@ li {
 }
 
 blockquote {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 1em;
-  padding-top: 0.8em;
-  padding-bottom: 0.8em;
-  padding-right: 0.8em;
+  background-color: var(--color-bg-secondary);
   border-left: 5px solid var(--color-primary);
   margin-bottom: 2.5rem;
-  background-color: var(--color-bg-secondary);
+  margin-inline: 0;
+  padding: 1em .8em .8em;
 }
 
-blockquote h1,
-blockquote h2,
-blockquote h3,
-blockquote h4,
-blockquote h5,
-blockquote h6 {
+blockquote :is(h1,h2,h3,h4,h5,h6)
+{
   margin: 0.4em 0;
 }
 
@@ -188,19 +176,17 @@ blockquote p {
 img,
 video {
   height: auto;
+  margin-block: 0 2.5rem;
   max-width: 100%;
-  margin-top: 0;
-  margin-bottom: 2.5rem;
 }
 
 /* Pre and Code */
 pre {
   background-color: var(--color-bg-secondary);
   display: block;
-  padding: 1em;
+  margin-block: 0 2.5rem;
   overflow-x: auto;
-  margin-top: 0;
-  margin-bottom: 2.5rem;
+  padding: 1em;
 
   :root[data-theme="dark"] & {
     background-color: var(--color-bg-secondary-dark);
@@ -208,9 +194,9 @@ pre {
 }
 
 code {
+  background-color: var(--color-bg-secondary);
   font-size: 0.9em;
   padding: 0 0.5em;
-  background-color: var(--color-bg-secondary);
   white-space: pre-wrap;
 
   :root[data-theme="dark"] & {
@@ -219,22 +205,22 @@ code {
 }
 
 pre > code {
-  padding: 0;
   background-color: transparent;
+  padding: 0;
   white-space: pre;
 }
 
 /* Tables */
 table {
+  border-collapse: collapse;
   text-align: justify;
   width: 100%;
-  border-collapse: collapse;
 }
 
 td,
 th {
-  padding: 0.5em;
   border-bottom: 1px solid var(--color-bg-secondary);
+  padding: 0.5em;
 }
 
 /* Buttons, forms and input */
@@ -249,9 +235,9 @@ textarea:focus {
 }
 
 textarea {
-  width: 100%;
   max-width: 100%;
   min-height: 35px;
+  width: 100%;
 }
 
 .btn,
@@ -259,20 +245,19 @@ button,
 input[type='submit'],
 input[type='reset'],
 input[type='button'] {
+  background-color: var(--color-primary);
+  border-radius: 1px;
+  color: var(--color-bg);
+  cursor: pointer;
   display: inline-block;
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
-  background-color: var(--color-primary);
-  color: var(--color-bg);
-  border-radius: 1px;
-  cursor: pointer;
-  box-sizing: border-box;
-
+  
   :root[data-theme="dark"] & {
-    color: var(--color-title-dark);
     background-color: var(--color-link-dark);
+    color: var(--color-title-dark);
   }
 }
 
@@ -301,17 +286,14 @@ input[type='button']:hover:enabled {
 textarea,
 select,
 input {
-  color: var(--color-text);
-  padding: 6px 10px;
-
-  /* The 6px vertically centers text on FF, ignored by Webkit */
-  margin-bottom: 10px;
   background-color: var(--color-bg-secondary);
   border: 1px solid var(--color-bg-secondary);
   border-radius: 4px;
   box-shadow: none;
-  box-sizing: border-box;
+  color: var(--color-text);
   font-family: var(--font-family-base);
+  margin-bottom: 10px;
+  padding: 6px 10px;
 
   &:focus {
     border: 1px solid var(--color-primary);
@@ -333,8 +315,8 @@ label,
 legend,
 fieldset {
   display: block;
-  margin-bottom: 0.5rem;
   font-weight: 600;
+  margin-bottom: 0.5rem;
 
   :root[data-theme="dark"] & {
     color: var(--color-title-dark);
